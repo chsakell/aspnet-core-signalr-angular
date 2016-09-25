@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "description": "live game feed",
+  "name": "livegamefeed",
+  "readme": "chsakell's blog all right reserved",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chsakelll/aspnetcore-signalr-angular2"
+  },
+  "dependencies": {
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/forms": "2.0.0",
+    "@angular/http": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/router": "3.0.0",
+    "@angular/upgrade": "2.0.0",
+    "angular2-in-memory-web-api": "0.0.20",
+    "bower": "1.7.9",
+    "core-js": "^2.4.1",
+    "jquery": "^3.1.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "5.0.0-beta.12",
+    "signalr": "^2.2.1",
+    "systemjs": "0.19.27",
+    "zone.js": "^0.6.23"
+  },
+  "devDependencies": {
+    "concurrently": "^2.2.0",
+    "gulp": ">=3.9.1",
+    "gulp-concat": ">=2.5.2",
+    "gulp-copy": ">=0.0.2",
+    "gulp-cssmin": ">=0.1.7",
+    "gulp-rename": ">=1.2.2",
+    "gulp-rimraf": ">=0.2.0",
+    "gulp-tsc": ">=1.2.0",
+    "gulp-uglify": ">=1.2.0",
+    "gulp-watch": ">=4.3.9",
+    "jasmine-core": "2.4.1",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.0",
+    "typings": "^1.3.2"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run gulp\" \"npm run watch\" \"npm run tsc:w\"",
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "typings": "typings",
+    "gulp": "gulp",
+    "watch": "gulp watch",
+    "ngc": "ngc"
+  }
+}
