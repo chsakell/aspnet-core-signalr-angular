@@ -186,6 +186,8 @@ typings/
 wwwroot/lib/
 app/**/*.js
 app/**/*.map
+wwwroot/app/**/*.*
+
 orleans.codegen.cs
 
 # RIA/Silverlight projects
