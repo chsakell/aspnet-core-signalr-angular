@@ -25,8 +25,8 @@ paths.concatCssDest = paths.webroot + "css/site.min.css";
 
 paths.lib = paths.webroot + "lib/";
 
-paths.angular = paths.node_modules + "@angular/**/*.js"
-paths.angularWebApi = paths.node_modules + "angular2-in-memory-web-api/*.js"
+paths.angular = paths.node_modules + "@angular/**/*.js";
+paths.angularWebApi = paths.node_modules + "angular2-in-memory-web-api/*.js";
 paths.corejs = paths.node_modules + "core-js/client/shim*.js";
 paths.zonejs = paths.node_modules + "zone.js/dist/zone*.js";
 paths.reflectjs = paths.node_modules + "reflect-metadata/Reflect*.js";
@@ -64,7 +64,7 @@ gulp.task("copy:angular", function () {
 
     return gulp.src(paths.angular,
         { base: paths.node_modules + "@angular/" })
-        .pipe(gulp.dest(paths.lib + "angular/"));
+        .pipe(gulp.dest(paths.lib + "@angular/"));
 });
 
 gulp.task("copy:angularWebApi", function () {
