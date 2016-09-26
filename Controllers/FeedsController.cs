@@ -9,9 +9,9 @@ using LiveGameFeed.Hubs;
 namespace LiveGameFeed.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : ApiHubController<Broadcaster>
+    public class FeedsController : ApiHubController<Broadcaster>
     {
-        public ValuesController(IConnectionManager signalRConnectionManager) 
+        public FeedsController(IConnectionManager signalRConnectionManager) 
         : base(signalRConnectionManager) { }
         
         // GET api/values
