@@ -126,7 +126,7 @@ gulp.task("dependencies", ["copy:angular",
 
 gulp.task("watch", function () {
     return watch(paths.app)
-        .pipe(gulp.dest(paths.appDest))
+        .pipe(gulp.dest(paths.appDest));
 });
 
 gulp.task("min:app", function () {
