@@ -5,27 +5,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR.Infrastructure;
 using LiveGameFeed.Hubs;
+using LiveGameFeed.Data.Abstract;
+using LiveGameFeed.Models;
 
 namespace LiveGameFeed.Controllers
 {
     [Route("api/[controller]")]
     public class FeedsController : ApiHubController<Broadcaster>
     {
-        public FeedsController(IConnectionManager signalRConnectionManager) 
-        : base(signalRConnectionManager) { }
-        
+        IFeedRepository _feedRepository;
+        public FeedsController(
+            IConnectionManager signalRConnectionManager,
+            IFeedRepository feedRepository)
+        : base(signalRConnectionManager)
+        {
+            _feedRepository = feedRepository;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Feed> Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<Feed> _feeds = _feedRepository.GetAll();
+
+            return _feeds;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Feed Get(int id)
         {
-            return "value";
+            return _feedRepository.GetSingle(id);
         }
 
         // POST api/values

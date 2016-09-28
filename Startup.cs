@@ -2,8 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LiveGameFeed.Data;
+using LiveGameFeed.Data.Repositories;
+using LiveGameFeed.Data.Abstract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -27,6 +31,12 @@ namespace LiveGameFeed
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<LiveGameContext>(options => options.UseInMemoryDatabase());
+            
+            // Repositories
+            services.AddScoped<IMatchRepository, MatchRepository>();
+            services.AddScoped<IFeedRepository, FeedRepository>();
+            
             // Add framework services.
             services.AddMvc();
 
@@ -61,6 +71,8 @@ namespace LiveGameFeed
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseSignalR();
+
+            LiveGameDbInitializer.Initialize(app.ApplicationServices);
         }
     }
 }

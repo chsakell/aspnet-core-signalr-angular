@@ -5,25 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-interface FeedSignalR extends SignalR {
-    broadcaster: FeedProxy
-}
-
-interface FeedProxy {
-    client: FeedClient
-}
-
-interface FeedClient {
-    userConnected: (user: any) => void;
-    userDisconnected: (id: string) => void;
-    messageReceived: (message: string) => void;
-}
-
-export enum ConnectionState {
-    Connected = 1,
-    Disconnected = 2,
-    Error = 3
-}
+import { FeedSignalR, FeedProxy, FeedClient, ConnectionState } from './interfaces';
 
 @Injectable()
 export class FeedService {

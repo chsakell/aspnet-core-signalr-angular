@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FeedService, ConnectionState } from '../shared/feed.service';
+import { FeedService } from '../shared/feed.service';
+import { ConnectionState } from '../shared/interfaces';
 
 @Component({
     selector: 'home',
