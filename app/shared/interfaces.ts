@@ -18,3 +18,15 @@ export enum ConnectionState {
     Disconnected = 2,
     Error = 3
 }
+
+/* LiveGameFeed related interfaces */
+export interface Match {
+    id: number;
+    host: string;
+    guest: string;
+    hostScore: number;
+    guestScore: number;
+    matchDate: Date;
+    league: string;
+    feeds: any
+}
