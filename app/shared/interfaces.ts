@@ -27,6 +27,6 @@ export interface Match {
     hostScore: number;
     guestScore: number;
     matchDate: Date;
-    league: string;
+    type: string;
     feeds: any
 }

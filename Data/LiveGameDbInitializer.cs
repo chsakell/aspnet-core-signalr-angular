@@ -24,48 +24,57 @@ namespace LiveGameFeed.Data
                 {
                     Host = "Team 1",
                     Guest = "Team 2",
-                    HostScore = 3,
-                    GuestScore = 1,
+                    HostScore = 0,
+                    GuestScore = 0,
                     MatchDate = DateTime.Now,
-                    League = "FootballLeauge",
+                    Type = "Football",
                     Feeds = new List<Feed>
                     {
                         new Feed()
                         {
                             Description = "Match started",
                             MatchId = 1
-                        },
-                         new Feed()
-                        {
-                            Description = "Goal for Panathinaikos",
-                            MatchId = 1
-                        },
+                        }
                     }
                 };
+
                 Match match_02 = new Match
                 {
                     Host = "Team 3",
                     Guest = "Team 4",
-                    HostScore = 5,
-                    GuestScore = 3,
+                    HostScore = 0,
+                    GuestScore = 0,
                     MatchDate = DateTime.Now,
-                    League = "Spanish League",
+                    Type = "Football",
                     Feeds = new List<Feed>
                     {
                         new Feed()
                         {
                             Description = "Match started",
                             MatchId = 2
-                        },
-                         new Feed()
-                        {
-                            Description = "Goal for Real Madrid",
-                            MatchId = 2
-                        },
+                        }
                     }
                 };
 
-                context.Matches.Add(match_01); context.Matches.Add(match_02);
+                Match match_03 = new Match
+                {
+                    Host = "Team 5",
+                    Guest = "Team 6",
+                    HostScore = 0,
+                    GuestScore = 0,
+                    MatchDate = DateTime.Now,
+                    Type = "Basketball",
+                    Feeds = new List<Feed>
+                    {
+                        new Feed()
+                        {
+                            Description = "Match started",
+                            MatchId = 3
+                        }
+                    }
+                };
+
+                context.Matches.Add(match_01); context.Matches.Add(match_02); context.Matches.Add(match_03);
 
                 context.SaveChanges();
             }

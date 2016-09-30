@@ -25,7 +25,7 @@ namespace ChatLe.Controllers
         {
             TimerEventArgs eventsArgs = e as TimerEventArgs;
             System.Diagnostics.Debug.WriteLine("hello from home ApiHubController.cs..");
-            await Clients.All.userConnected(DateTime.Now);
+            //await Clients.All.userConnected(DateTime.Now);
             //_coolMessageHubContext.Clients.All.newCpuValue(eventsArgs.Value);
         }
     }
