@@ -1,21 +1,32 @@
+using System;
+using LiveGameFeed.Controllers;
+using LiveGameFeed.Core.MvcTimer;
+using LiveGameFeed.Hubs;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.SignalR.Infrastructure;
 
 namespace ChatLe.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApiHubController<Broadcaster>
     {
-        static ILogger _logger;
-        public HomeController(ILoggerFactory factory)
+        public HomeController(IConnectionManager signalRConnectionManager,
+                              ITimerService timerService)
+        : base(signalRConnectionManager)
         {
-            if (_logger == null)
-                _logger = factory.CreateLogger("Unhandled Error");
+            timerService.TimerElapsed += _feed_Generate;
         }
-
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        private async void _feed_Generate(object sender, EventArgs e)
+        {
+            TimerEventArgs eventsArgs = e as TimerEventArgs;
+            System.Diagnostics.Debug.WriteLine("hello from home ApiHubController.cs..");
+            await Clients.All.userConnected(DateTime.Now);
+            //_coolMessageHubContext.Clients.All.newCpuValue(eventsArgs.Value);
         }
     }
 }

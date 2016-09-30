@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using LiveGameFeed.Models;
 
-namespace LiveGameFeed.Mappings
+namespace LiveGameFeed.Core.Mappings
 {
     public class DomainToViewModelMappingProfile : Profile
     {

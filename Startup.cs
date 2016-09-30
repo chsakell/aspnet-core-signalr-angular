@@ -11,7 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using LiveGameFeed.Mappings;
+using LiveGameFeed.Core.Mappings;
+using LiveGameFeed.Core.MvcTimer;
 
 namespace LiveGameFeed
 {
@@ -37,6 +38,10 @@ namespace LiveGameFeed
             // Repositories
             services.AddScoped<IMatchRepository, MatchRepository>();
             services.AddScoped<IFeedRepository, FeedRepository>();
+
+            // Timer service configuration
+            services.AddSingleton<ITimerService, TimerService>();
+            services.Configure<TimerServiceConfiguration>(Configuration.GetSection("TimeService"));
 
             // Automapper Configuration
             AutoMapperConfiguration.Configure();

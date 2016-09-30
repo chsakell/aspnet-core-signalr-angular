@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace LiveGameFeed.Mappings
+namespace LiveGameFeed.Core.Mappings
 {
     public class AutoMapperConfiguration
     {

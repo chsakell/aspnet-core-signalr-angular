@@ -22,8 +22,8 @@ namespace LiveGameFeed.Data
             {
                 Match match_01 = new Match
                 {
-                    Host = "Panathinaikos",
-                    Guest = "Olimpiakos",
+                    Host = "Team 1",
+                    Guest = "Team 2",
                     HostScore = 3,
                     GuestScore = 1,
                     MatchDate = DateTime.Now,
@@ -44,8 +44,8 @@ namespace LiveGameFeed.Data
                 };
                 Match match_02 = new Match
                 {
-                    Host = "Real Madrit FC",
-                    Guest = "Barchelona",
+                    Host = "Team 3",
+                    Guest = "Team 4",
                     HostScore = 5,
                     GuestScore = 3,
                     MatchDate = DateTime.Now,
