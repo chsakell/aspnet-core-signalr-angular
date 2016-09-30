@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.SignalR.Infrastructure;
 using LiveGameFeed.Hubs;
 using LiveGameFeed.Data.Abstract;
 using LiveGameFeed.Models;
+using AutoMapper;
 
 namespace LiveGameFeed.Controllers
 {
@@ -24,18 +25,21 @@ namespace LiveGameFeed.Controllers
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<Match> Get()
+        public IEnumerable<MatchViewModel> Get()
         {
             IEnumerable<Match> _matches = _matchRepository.GetAll();
+            IEnumerable<MatchViewModel> _matchesVM = Mapper.Map<IEnumerable<Match>, IEnumerable<MatchViewModel>>(_matches);
 
-            return _matches;
+            return _matchesVM;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public Match Get(int id)
+        public MatchViewModel Get(int id)
         {
-            return _matchRepository.GetSingle(id);
+            Match _match = _matchRepository.GetSingle(id);
+            MatchViewModel _matchVM = Mapper.Map<Match, MatchViewModel>(_match);
+            return _matchVM;
         }
 
         // POST api/values

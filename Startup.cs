@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using LiveGameFeed.Mappings;
 
 namespace LiveGameFeed
 {
@@ -36,6 +37,9 @@ namespace LiveGameFeed
             // Repositories
             services.AddScoped<IMatchRepository, MatchRepository>();
             services.AddScoped<IFeedRepository, FeedRepository>();
+
+            // Automapper Configuration
+            AutoMapperConfiguration.Configure();
             
             // Add framework services.
             services.AddMvc();
