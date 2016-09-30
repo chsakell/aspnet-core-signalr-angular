@@ -15,7 +15,7 @@ namespace LiveGameFeed.Models
         public int HostScore { get; set; }
         public int GuestScore { get; set; }
         public DateTime MatchDate { get; set; }
-        public string Type { get; set; }
+        public MatchTypeEnums Type { get; set; }
 
         public ICollection<Feed> Feeds { get; set; }
     }

@@ -7,7 +7,8 @@ namespace LiveGameFeed.Core.Mappings
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<Match, MatchViewModel>();
+            Mapper.CreateMap<Match, MatchViewModel>()
+                .ForMember(m => m.Type, map => map.MapFrom(m => m.Type.ToString()));
             Mapper.CreateMap<Feed, FeedViewModel>();
         }
     }

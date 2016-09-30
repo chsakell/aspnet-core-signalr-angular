@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import { FeedSignalR, FeedProxy, FeedClient, ConnectionState } from '../interfaces';
+import { FeedSignalR, FeedProxy, FeedClient, ConnectionState, Match } from '../interfaces';
 
 @Injectable()
 export class FeedService {
@@ -13,15 +13,21 @@ export class FeedService {
     currentState = ConnectionState.Disconnected;
     connectionState: Observable<ConnectionState>;
     userConnected: Observable<any>;
+
+    updateMatch: Observable<Match>;
     messageReceived: Observable<string>;
 
     private connectionStateSubject = new Subject<ConnectionState>();
     private userConnectedSubject = new Subject<any>();
+
+    private updateMatchSubject = new Subject<Match>();
     private messageReceivedSubject = new Subject<string>();
 
     constructor(private http: Http) {
         this.connectionState = this.connectionStateSubject.asObservable();
         this.userConnected = this.userConnectedSubject.asObservable();
+
+        this.updateMatch = this.updateMatchSubject.asObservable();
         this.messageReceived = this.messageReceivedSubject.asObservable();
     }
 
@@ -37,6 +43,13 @@ export class FeedService {
          * @param User user, the connected user
        */
         feedHub.client.userConnected = user => this.onUserConnected(user);
+        
+        /**
+          * @desc callback when a message is received
+          * @param String to, the conversation id
+          * @param Message data, the message
+        */
+        feedHub.client.updateMatch = match => this.onUpdateMatch(match);
 
         /**
           * @desc callback when a message is received
@@ -81,6 +94,10 @@ export class FeedService {
     private onUserConnected(user: any) {
         console.log("Chat Hub new user connected: " + user);
         this.userConnectedSubject.next(user);
+    }
+
+    private onUpdateMatch(match: Match) {
+        this.updateMatchSubject.next(match);
     }
 
     private onMessageReceived(message: string) {

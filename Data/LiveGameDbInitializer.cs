@@ -27,7 +27,7 @@ namespace LiveGameFeed.Data
                     HostScore = 0,
                     GuestScore = 0,
                     MatchDate = DateTime.Now,
-                    Type = "Football",
+                    Type = MatchTypeEnums.Football,
                     Feeds = new List<Feed>
                     {
                         new Feed()
@@ -45,7 +45,7 @@ namespace LiveGameFeed.Data
                     HostScore = 0,
                     GuestScore = 0,
                     MatchDate = DateTime.Now,
-                    Type = "Football",
+                    Type = MatchTypeEnums.Football,
                     Feeds = new List<Feed>
                     {
                         new Feed()
@@ -63,7 +63,7 @@ namespace LiveGameFeed.Data
                     HostScore = 0,
                     GuestScore = 0,
                     MatchDate = DateTime.Now,
-                    Type = "Basketball",
+                    Type = MatchTypeEnums.Basketball,
                     Feeds = new List<Feed>
                     {
                         new Feed()

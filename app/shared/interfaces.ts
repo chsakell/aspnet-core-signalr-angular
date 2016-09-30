@@ -10,6 +10,8 @@ export interface FeedProxy {
 export interface FeedClient {
     userConnected: (user: any) => void;
     userDisconnected: (id: string) => void;
+    
+    updateMatch: (match: Match) => void;
     messageReceived: (message: string) => void;
 }
 
@@ -21,12 +23,11 @@ export enum ConnectionState {
 
 /* LiveGameFeed related interfaces */
 export interface Match {
-    id: number;
-    host: string;
-    guest: string;
-    hostScore: number;
-    guestScore: number;
-    matchDate: Date;
-    type: string;
-    feeds: any
+    Id: number;
+    Host: string;
+    Guest: string;
+    HostScore: number;
+    GuestScore: number;
+    MatchDate: Date;
+    Type: string;
 }

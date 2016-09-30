@@ -41,7 +41,16 @@ export class HomeComponent implements OnInit {
         this.dataService.getMatches()
             .subscribe((res: Match[]) => {
                 self.matches = res;
-                console.log(self.matches);
+                self.feedService.updateMatch.subscribe(
+                    match => {
+                        for(var i=0; i< self.matches.length; i++)
+                        {   
+                            if (self.matches[i].Id === match.Id) {
+                                self.matches[i] = match;
+                            }
+                        }
+                    }
+                );
             },
             error => {
                 console.log(error);

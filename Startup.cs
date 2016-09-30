@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using LiveGameFeed.Core.Mappings;
 using LiveGameFeed.Core.MvcTimer;
+using Newtonsoft.Json.Serialization;
 
 namespace LiveGameFeed
 {
@@ -34,10 +35,9 @@ namespace LiveGameFeed
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LiveGameContext>(options => options.UseInMemoryDatabase());
-            
             // Repositories
-            services.AddScoped<IMatchRepository, MatchRepository>();
-            services.AddScoped<IFeedRepository, FeedRepository>();
+            services.AddSingleton<IMatchRepository, MatchRepository>();
+            services.AddSingleton<IFeedRepository, FeedRepository>();
 
             // Timer service configuration
             services.AddSingleton<ITimerService, TimerService>();
@@ -47,7 +47,10 @@ namespace LiveGameFeed
             AutoMapperConfiguration.Configure();
             
             // Add framework services.
-            services.AddMvc();
+            services
+                .AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = 
+                    new DefaultContractResolver());
 
             services.AddSignalR(options => options.Hubs.EnableDetailedErrors = true);
         }
