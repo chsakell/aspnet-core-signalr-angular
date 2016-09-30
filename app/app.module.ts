@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { ConfigService } from './shared/config.service';
-import { DataService } from './shared/data.service';
+import { ConfigService } from './shared/services/config.service';
+import { DataService } from './shared/services/data.service';
 import { HomeComponent } from './home/home.component';
+import { MatchComponent } from './shared/components/match.component';
 import { routing } from './app.routes';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { routing } from './app.routes';
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        MatchComponent
     ],
     bootstrap: [AppComponent],
     providers: [ 

@@ -1,29 +1,5 @@
 <div class="row">
     <div class="col-xs-6 col-md-4" *ngFor="let match of matches">
-        <table class="table table-bordered box">
-            <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span class="teamName">{{match.host}}</span></td>
-                    <td><span class="teamScore"> {{match.hostScore}} </span></td>
-                </tr>
-                <tr>
-                    <td><span class="teamName"> {{match.guest}} </span></td>
-                    <td><span class="teamScore">{{match.guestScore}}</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <button type="button" class="btn btn-default btn-lg btn-block">
-                            Subscribe to feed
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <match [match]="match"></match>
     </div>
 </div>

@@ -6,7 +6,7 @@ import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Match } from './interfaces';
+import { Match } from '../interfaces';
 import { ConfigService } from './config.service';
 
 @Injectable()

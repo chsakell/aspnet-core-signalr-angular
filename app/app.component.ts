@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FeedService } from './shared/feed.service';
+import { FeedService } from './shared/services/feed.service';
 import { ConnectionState } from './shared/interfaces';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FeedService } from '../shared/feed.service';
+import { FeedService } from '../shared/services/feed.service';
 import { Match } from '../shared/interfaces';
-import { DataService } from '../shared/data.service';
+import { DataService } from '../shared/services/data.service';
 import { ConnectionState } from '../shared/interfaces';
 
 @Component({

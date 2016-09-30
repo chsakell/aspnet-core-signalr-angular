@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import { FeedSignalR, FeedProxy, FeedClient, ConnectionState } from './interfaces';
+import { FeedSignalR, FeedProxy, FeedClient, ConnectionState } from '../interfaces';
 
 @Injectable()
 export class FeedService {
