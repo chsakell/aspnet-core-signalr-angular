@@ -19,7 +19,7 @@
                 <span class="label label-success">{{match.Type}}</span>
             </td>
             <td>
-                <button type="button" class="btn btn-default btn-xs" (click)="subscribe()">
+                <button type="button" class="btn btn-default btn-md" (click)="subscribe()">
                             Subscribe to feed
                         </button>
             </td>
@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let feed of match.Feeds">
+                            <tr *ngFor="let feed of match.Feeds" feedHighlight>
                                 <td>
                                     <span class="feed-time">{{feed.CreatedAt | date:'shortTime' }}</span>
                                 </td>

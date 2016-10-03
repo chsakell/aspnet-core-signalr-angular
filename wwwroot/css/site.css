@@ -36,3 +36,12 @@ th, td {
 .feed-update {
     color: #337ab7;
 }
+
+.feed-highlight {
+    background-color: #eee;
+    -webkit-transition: background-color 2000ms linear;
+    -moz-transition: background-color 2000ms linear;
+    -o-transition: background-color 2000ms linear;
+    -ms-transition: background-color 2000ms linear;
+    transition: background-color 2000ms linear;
+}
