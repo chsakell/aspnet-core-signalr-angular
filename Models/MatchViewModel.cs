@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace LiveGameFeed.Models
 {
@@ -11,5 +12,7 @@ namespace LiveGameFeed.Models
         public int GuestScore { get; set; }
         public DateTime MatchDate { get; set; }
         public string Type { get; set; }
+
+        public ICollection<FeedViewModel> Feeds {get; set; }
     }
 }

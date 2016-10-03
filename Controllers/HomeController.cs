@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using LiveGameFeed.Controllers;
 using LiveGameFeed.Core.MvcTimer;
@@ -55,56 +56,35 @@ namespace LiveGameFeed.Controllers
 
             foreach (var match in matches)
             {
-                if (match.Type == MatchTypeEnums.Football)
+                if (updateHost)
                 {
-                    if (updateHost)
+                    match.HostScore = match.HostScore + 2;
+                    Feed feed = new Feed()
                     {
-                        match.HostScore++;
-                        match.Feeds.Add(new Feed()
-                        {
-                            Description = "Goal for " + match.Host + "!",
-                            CreatedAt = DateTime.Now,
-                            MatchId = match.Id
-                        });
-                    }
-                    else
-                    {
-                        match.GuestScore++;
-                        match.Feeds.Add(new Feed()
-                        {
-                            Description = "Goal for " + match.Guest + "!",
-                            CreatedAt = DateTime.Now,
-                            MatchId = match.Id
-                        });
-                    }
+                        Description = "2 points for " + match.Host + "!",
+                        CreatedAt = DateTime.Now,
+                        MatchId = match.Id
+                    };
+
+                    match.Feeds.Add(feed);
                 }
-                else if (match.Type == MatchTypeEnums.Basketball)
+                else
                 {
-                    if (updateHost)
+                    match.GuestScore = match.GuestScore + 2;
+                    Feed feed = new Feed()
                     {
-                        match.HostScore = match.HostScore + 2;
-                        match.Feeds.Add(new Feed()
-                        {
-                            Description = "2 points for " + match.Host + "!",
-                            CreatedAt = DateTime.Now,
-                            MatchId = match.Id
-                        });
-                    }
-                    else
-                    {
-                        match.GuestScore = match.GuestScore + 2;
-                        match.Feeds.Add(new Feed()
-                        {
-                            Description = "2 points for " + match.Guest + "!",
-                            CreatedAt = DateTime.Now,
-                            MatchId = match.Id
-                        });
-                    }
+                        Description = "2 points for " + match.Guest + "!",
+                        CreatedAt = DateTime.Now,
+                        MatchId = match.Id
+                    };
+                    match.Feeds.Add(feed);
                 }
 
                 _matchRepository.Commit();
                 MatchViewModel _matchVM = Mapper.Map<Match, MatchViewModel>(match);
+                FeedViewModel _feedVM = Mapper.Map<Feed, FeedViewModel>(match.Feeds.Last());
                 await Clients.All.updateMatch(_matchVM);
+                await Clients.Group(match.Id.ToString()).addFeed(_feedVM);
             }
         }
     }

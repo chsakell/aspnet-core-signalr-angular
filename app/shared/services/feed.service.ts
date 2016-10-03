@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import { FeedSignalR, FeedProxy, FeedClient, FeedServer, ConnectionState, Match } from '../interfaces';
+import { FeedSignalR, FeedProxy, FeedClient, FeedServer, ConnectionState, Match, Feed } from '../interfaces';
 
 @Injectable()
 export class FeedService {
@@ -15,12 +15,14 @@ export class FeedService {
     userConnected: Observable<any>;
 
     updateMatch: Observable<Match>;
+    addFeed: Observable<Feed>;
     messageReceived: Observable<string>;
 
     private connectionStateSubject = new Subject<ConnectionState>();
     private userConnectedSubject = new Subject<any>();
 
     private updateMatchSubject = new Subject<Match>();
+    private addFeedSubject = new Subject<Feed>();
     private messageReceivedSubject = new Subject<string>();
 
     private server: FeedServer;
@@ -30,6 +32,7 @@ export class FeedService {
         this.userConnected = this.userConnectedSubject.asObservable();
 
         this.updateMatch = this.updateMatchSubject.asObservable();
+        this.addFeed = this.addFeedSubject.asObservable();
         this.messageReceived = this.messageReceivedSubject.asObservable();
     }
 
@@ -48,11 +51,14 @@ export class FeedService {
         feedHub.client.userConnected = user => this.onUserConnected(user);
         
         /**
-          * @desc callback when a message is received
-          * @param String to, the conversation id
-          * @param Message data, the message
+          * @desc callback when match score is updated
         */
         feedHub.client.updateMatch = match => this.onUpdateMatch(match);
+
+        /**
+          * @desc callback when a feed is added
+        */
+        feedHub.client.addFeed = feed => this.onAddFeed(feed);
 
         /**
           * @desc callback when a message is received
@@ -101,6 +107,10 @@ export class FeedService {
 
     private onUpdateMatch(match: Match) {
         this.updateMatchSubject.next(match);
+    }
+
+    private onAddFeed(feed: Feed) {
+        this.addFeedSubject.next(feed);
     }
 
     private onMessageReceived(message: string) {

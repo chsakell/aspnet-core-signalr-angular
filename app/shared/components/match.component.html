@@ -34,30 +34,18 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Feed</th>
+                                <th></th>
+                                <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="filterable-cell">Ford</td>
-                            </tr>
-                            <tr>
-                                <td class="filterable-cell">Ford</td>
-                            </tr>
-                            <tr>
-                                <td class="filterable-cell">Ford</td>
-                            </tr>
-                            <tr>
-                                <td class="filterable-cell">Ford</td>
-                            </tr>
-                            <tr>
-                                <td class="filterable-cell">Ford</td>
-                            </tr>
-                            <tr>
-                                <td class="filterable-cell">Ford</td>
-                            </tr>
-                            <tr>
-                                <td class="filterable-cell">Ford</td>
+                            <tr *ngFor="let feed of match.Feeds">
+                                <td>
+                                    <span class="feed-time">{{feed.CreatedAt | date:'shortTime' }}</span>
+                                </td>
+                                <td class="filterable-cell">
+                                    <span class="feed-update"> {{feed.Description}} </span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

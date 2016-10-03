@@ -27,3 +27,12 @@ th, td {
     height: 190px;
     overflow: auto;
 }
+
+.feed-time {
+    color:brown;
+    font-size: 10px;
+}
+
+.feed-update {
+    color: #337ab7;
+}

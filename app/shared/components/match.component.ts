@@ -13,7 +13,7 @@ export class MatchComponent implements OnInit {
 
     constructor(private feedService: FeedService) { }
 
-    ngOnInit() { }
+    ngOnInit() {  }
 
     subscribe() {
         console.log(this.match.Id);

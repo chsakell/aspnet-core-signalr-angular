@@ -13,6 +13,7 @@ export interface FeedClient {
     userDisconnected: (id: string) => void;
     
     updateMatch: (match: Match) => void;
+    addFeed: (feed: Feed) => void;
     messageReceived: (message: string) => void;
 }
 
@@ -35,4 +36,12 @@ export interface Match {
     GuestScore: number;
     MatchDate: Date;
     Type: string;
+    Feeds: Feed[];
+}
+
+export interface Feed {
+    Id: number;
+    Description: string;
+    CreatedAt: Date;
+    MatchId: number;
 }
