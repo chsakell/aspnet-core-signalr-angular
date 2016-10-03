@@ -56,25 +56,7 @@ namespace LiveGameFeed.Data
                     }
                 };
 
-                Match match_03 = new Match
-                {
-                    Host = "Team 5",
-                    Guest = "Team 6",
-                    HostScore = 0,
-                    GuestScore = 0,
-                    MatchDate = DateTime.Now,
-                    Type = MatchTypeEnums.Basketball,
-                    Feeds = new List<Feed>
-                    {
-                        new Feed()
-                        {
-                            Description = "Match started",
-                            MatchId = 3
-                        }
-                    }
-                };
-
-                context.Matches.Add(match_01); context.Matches.Add(match_02); context.Matches.Add(match_03);
+                context.Matches.Add(match_01); context.Matches.Add(match_02);
 
                 context.SaveChanges();
             }

@@ -22,3 +22,8 @@ body {
 th, td {
     text-align: center;
 }
+
+.feed-table {
+    height: 190px;
+    overflow: auto;
+}
