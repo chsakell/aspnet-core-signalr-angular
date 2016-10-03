@@ -13,5 +13,15 @@ namespace LiveGameFeed.Hubs
         {
             return Clients.All.messageReceived(Context.ConnectionId + "> " + message);
         }
+
+        public Task Subscribe(int matchId)
+        {
+            return Groups.Add(Context.ConnectionId, matchId.ToString());
+        }
+
+        public Task Unsubscribe(int matchId)
+        {
+            return Groups.Remove(Context.ConnectionId, matchId.ToString());
+        }
     }
 }

@@ -4,7 +4,8 @@ export interface FeedSignalR extends SignalR {
 }
 
 export interface FeedProxy {
-    client: FeedClient
+    client: FeedClient;
+    server: FeedServer;
 }
 
 export interface FeedClient {
@@ -13,6 +14,10 @@ export interface FeedClient {
     
     updateMatch: (match: Match) => void;
     messageReceived: (message: string) => void;
+}
+
+export interface FeedServer {
+    subscribe(matchId: number) : void;
 }
 
 export enum ConnectionState {

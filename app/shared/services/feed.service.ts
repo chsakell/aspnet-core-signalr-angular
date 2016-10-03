@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import { FeedSignalR, FeedProxy, FeedClient, ConnectionState, Match } from '../interfaces';
+import { FeedSignalR, FeedProxy, FeedClient, FeedServer, ConnectionState, Match } from '../interfaces';
 
 @Injectable()
 export class FeedService {
@@ -23,6 +23,8 @@ export class FeedService {
     private updateMatchSubject = new Subject<Match>();
     private messageReceivedSubject = new Subject<string>();
 
+    private server: FeedServer;
+
     constructor(private http: Http) {
         this.connectionState = this.connectionStateSubject.asObservable();
         this.userConnected = this.userConnectedSubject.asObservable();
@@ -37,6 +39,7 @@ export class FeedService {
         // get the signalR hub named 'broadcaster'
         let connection = <FeedSignalR>$.connection;
         let feedHub = connection.broadcaster;
+        this.server = feedHub.server;
 
         /**
          * @desc callback when a new user connect to the chat
@@ -103,5 +106,9 @@ export class FeedService {
     private onMessageReceived(message: string) {
         console.log(message);
         this.messageReceivedSubject.next(message);
+    }
+
+    public subscribeToFeed(matchId: number) {
+        this.server.subscribe(matchId);
     }
 }

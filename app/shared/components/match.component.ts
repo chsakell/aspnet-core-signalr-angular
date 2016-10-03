@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Match } from '../interfaces';
+import { FeedService } from '../services/feed.service';
 
 @Component({
     selector: 'match',
@@ -10,7 +11,12 @@ export class MatchComponent implements OnInit {
 
     @Input() match: Match;
 
-    constructor() { }
+    constructor(private feedService: FeedService) { }
 
     ngOnInit() { }
+
+    subscribe() {
+        console.log(this.match.Id);
+        this.feedService.subscribeToFeed(this.match.Id);
+    }
 }
