@@ -9,6 +9,7 @@ import { DataService } from './shared/services/data.service';
 import { HomeComponent } from './home/home.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { MatchComponent } from './shared/components/match.component';
+import { ChatComponent } from './shared/components/chat.component';
 import { routing } from './app.routes';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { routing } from './app.routes';
     ],
     declarations: [
         AppComponent,
+        ChatComponent,
         HomeComponent,
         HighlightDirective,
         MatchComponent

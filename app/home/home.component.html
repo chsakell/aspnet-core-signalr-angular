@@ -2,4 +2,7 @@
     <div class="col-md-4" *ngFor="let match of matches">
         <match [match]="match"></match>
     </div>
+    <div class="col-md-4">
+        <chat [matches]="matches"></chat>
+    </div>
 </div>
