@@ -10,29 +10,29 @@
             <td><span class="teamName">{{match.Id}}</span></td>
             <td><span class="teamScore"> {{match.Host}} vs {{match.Guest}} </span></td>
         </tr>
-        <!--<tr>
+        <tr>
             <td colspan="2">
                 <div class="feed-table">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Update</th>
+                                <th>Message</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let feed of match.Feeds" feedHighlight>
+                            <tr *ngFor="let message of messages" feedHighlight>
                                 <td>
-                                    <span class="feed-time">{{feed.CreatedAt | date:'shortTime' }}</span>
+                                    <span class="feed-time">{{message.CreatedAt | date:'shortTime' }} [{{message.MatchId}}]</span>
                                 </td>
                                 <td class="filterable-cell">
-                                    <span class="feed-update"> {{feed.Description}} </span>
+                                    <span class="feed-update"> {{message.Text}} </span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </td>
-        </tr>-->
+        </tr>
     </tbody>
 </table>

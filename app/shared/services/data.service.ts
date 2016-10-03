@@ -6,7 +6,7 @@ import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Match } from '../interfaces';
+import { ChatMessage, Match } from '../interfaces';
 import { ConfigService } from './config.service';
 
 @Injectable()
@@ -22,6 +22,20 @@ export class DataService {
     getMatches(): Observable<Match[]> {
         return this.http.get(this._baseUrl + 'matches')
             .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    addChatMessage(message: ChatMessage): Observable<void> {
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.post(this._baseUrl + 'messages/', JSON.stringify(message), {
+            headers: headers
+        })
+            .map((res: Response) => {
+                return null;
+            })
             .catch(this.handleError);
     }
 

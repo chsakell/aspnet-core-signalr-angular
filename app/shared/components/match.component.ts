@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Match } from '../interfaces';
+import { ChatMessage, Match } from '../interfaces';
 import { FeedService } from '../services/feed.service';
+import { DataService } from '../services/data.service';
 
 @Component({
     selector: 'match',
@@ -11,8 +12,10 @@ export class MatchComponent implements OnInit {
 
     @Input() match: Match;
     subscribed: boolean;
+    chatMessage: string = '';
 
-    constructor(private feedService: FeedService) { }
+    constructor(private feedService: FeedService,
+                private dataService: DataService) { }
 
     ngOnInit() {  }
 
@@ -25,5 +28,24 @@ export class MatchComponent implements OnInit {
     unsubscribe() {
         this.subscribed = false;
         this.feedService.unsubscribeToFeed(this.match.Id);
+    }
+
+    addChatMessage() {
+        let self = this;
+        let messageToSend: ChatMessage = { 
+            MatchId : self.match.Id, 
+            Text : self.chatMessage,
+            CreatedAt : new Date(Date.now())
+         };
+
+        this.dataService.addChatMessage(messageToSend)
+            .subscribe(() => {
+                console.log('message sent..');
+            },
+            error => {
+                console.log(error);
+            });
+
+        self.chatMessage = '';
     }
 }

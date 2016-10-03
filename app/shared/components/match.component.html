@@ -28,8 +28,8 @@
             </td>
         </tr>
         <tr *ngIf="subscribed">
-            <td><button type="button" class="btn btn-default btn-md">Send</button></td>
-            <td><input type="text" class="form-control" placeholder="Type message.." /></td>
+            <td><button type="button" class="btn btn-default btn-md" (click)="addChatMessage()">Send</button></td>
+            <td><input type="text" class="form-control" placeholder="Type message.." [(ngModel)]="chatMessage" /></td>
         </tr>
         <tr>
             <td colspan="2">

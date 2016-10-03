@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Match } from '../interfaces';
+import { ChatMessage, Match } from '../interfaces';
+import { FeedService } from '../services/feed.service';
 
 @Component({
     selector: 'chat',
@@ -9,8 +10,21 @@ import { Match } from '../interfaces';
 export class ChatComponent implements OnInit {
 
     @Input() matches: Match[];
+    messages: ChatMessage[];
 
-    constructor() { }
+    constructor(private feedService: FeedService) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        let self = this;
+
+        self.feedService.addChatMessage.subscribe(
+            message => {
+                console.log('received..');
+                console.log(message);
+                if(!self.messages)
+                    self.messages = new Array<ChatMessage>();
+                self.messages.unshift(message);
+            }
+        )
+     }
 }

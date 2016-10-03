@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import { FeedSignalR, FeedProxy, FeedClient, FeedServer, ConnectionState, Match, Feed } from '../interfaces';
+import { FeedSignalR, FeedProxy, FeedClient, FeedServer, ConnectionState, ChatMessage, Match, Feed } from '../interfaces';
 
 @Injectable()
 export class FeedService {
@@ -17,6 +17,7 @@ export class FeedService {
     updateMatch: Observable<Match>;
     addFeed: Observable<Feed>;
     messageReceived: Observable<string>;
+    addChatMessage: Observable<ChatMessage>;
 
     private connectionStateSubject = new Subject<ConnectionState>();
     private userConnectedSubject = new Subject<any>();
@@ -24,6 +25,7 @@ export class FeedService {
     private updateMatchSubject = new Subject<Match>();
     private addFeedSubject = new Subject<Feed>();
     private messageReceivedSubject = new Subject<string>();
+    private addChatMessageSubject = new Subject<ChatMessage>();
 
     private server: FeedServer;
 
@@ -34,6 +36,7 @@ export class FeedService {
         this.updateMatch = this.updateMatchSubject.asObservable();
         this.addFeed = this.addFeedSubject.asObservable();
         this.messageReceived = this.messageReceivedSubject.asObservable();
+        this.addChatMessage = this.addChatMessageSubject.asObservable();
     }
 
     start(debug: boolean): Observable<ConnectionState> {
@@ -66,6 +69,8 @@ export class FeedService {
           * @param Message data, the message
         */
         feedHub.client.messageReceived = message => this.onMessageReceived(message);
+
+        feedHub.client.addChatMessage = chatMessage => this.onAddChatMessage(chatMessage);
 
         if (debug) {
             // for debug only, callback on connection state change
@@ -101,7 +106,6 @@ export class FeedService {
     }
 
     private onUserConnected(user: any) {
-        console.log("Chat Hub new user connected: " + user);
         this.userConnectedSubject.next(user);
     }
 
@@ -110,12 +114,17 @@ export class FeedService {
     }
 
     private onAddFeed(feed: Feed) {
+        console.log(feed);
         this.addFeedSubject.next(feed);
     }
 
     private onMessageReceived(message: string) {
-        console.log(message);
         this.messageReceivedSubject.next(message);
+    }
+
+    private onAddChatMessage(chatMessage: ChatMessage) {
+        console.log(chatMessage);
+        this.addChatMessageSubject.next(chatMessage);
     }
 
     public subscribeToFeed(matchId: number) {
