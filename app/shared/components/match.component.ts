@@ -10,6 +10,7 @@ import { FeedService } from '../services/feed.service';
 export class MatchComponent implements OnInit {
 
     @Input() match: Match;
+    subscribed: boolean;
 
     constructor(private feedService: FeedService) { }
 
@@ -17,6 +18,12 @@ export class MatchComponent implements OnInit {
 
     subscribe() {
         console.log(this.match.Id);
+        this.subscribed = true;
         this.feedService.subscribeToFeed(this.match.Id);
+    }
+
+    unsubscribe() {
+        this.subscribed = false;
+        this.feedService.unsubscribeToFeed(this.match.Id);
     }
 }

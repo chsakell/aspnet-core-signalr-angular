@@ -19,13 +19,16 @@
                 <span class="label label-success">{{match.Type}}</span>
             </td>
             <td>
-                <button type="button" class="btn btn-default btn-md" (click)="subscribe()">
+                <button type="button" class="btn btn-default btn-md" (click)="subscribe()" *ngIf="!subscribed">
                             Subscribe to feed
+                        </button>
+                <button type="button" class="btn btn-danger btn-md" (click)="unsubscribe()" *ngIf="subscribed">
+                            Unubscribe
                         </button>
             </td>
         </tr>
-        <tr>
-            <td><button type="button" class="btn btn-default btn-xs">Send</button></td>
+        <tr *ngIf="subscribed">
+            <td><button type="button" class="btn btn-default btn-md">Send</button></td>
             <td><input type="text" class="form-control" placeholder="Type message.." /></td>
         </tr>
         <tr>

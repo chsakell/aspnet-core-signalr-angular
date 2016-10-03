@@ -11,14 +11,15 @@ export interface FeedProxy {
 export interface FeedClient {
     userConnected: (user: any) => void;
     userDisconnected: (id: string) => void;
-    
+
     updateMatch: (match: Match) => void;
     addFeed: (feed: Feed) => void;
     messageReceived: (message: string) => void;
 }
 
 export interface FeedServer {
-    subscribe(matchId: number) : void;
+    subscribe(matchId: number): void;
+    unsubscribe(matchId: number): void;
 }
 
 export enum ConnectionState {
