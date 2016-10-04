@@ -60,7 +60,7 @@ namespace LiveGameFeed.Core
                 FeedViewModel _feed = new FeedViewModel()
                 {
                     MatchId = match.Id,
-                    Description = points + " points for " + (updateHost == true ? match.Host : match.Guest + "!"),
+                    Description = points + " points for " + (updateHost == true ? match.Host : match.Guest) + "!",
                     CreatedAt = DateTime.Now 
                 };
                 using (var client = new HttpClient())

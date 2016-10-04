@@ -73,4 +73,11 @@ export class HomeComponent implements OnInit {
                 console.log(error);
             });
     }
+
+    updateSubscription(subscription: any) {
+        if(<boolean>subscription.subscribe === true)
+            this.feedService.subscribeToFeed(<number>subscription.matchId);
+        else
+            this.feedService.unsubscribeFromFeed(<number>subscription.matchId);
+    }
 }

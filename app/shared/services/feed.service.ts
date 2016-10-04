@@ -131,7 +131,7 @@ export class FeedService {
         this.server.subscribe(matchId);
     }
 
-    public unsubscribeToFeed(matchId: number) {
+    public unsubscribeFromFeed(matchId: number) {
         this.server.unsubscribe(matchId);
     }
 }
