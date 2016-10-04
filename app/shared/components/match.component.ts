@@ -19,17 +19,6 @@ export class MatchComponent implements OnInit {
 
     ngOnInit() { }
 
-    subscribe() {
-        console.log(this.match.Id);
-        this.subscribed = true;
-        //this.feedService.subscribeToFeed(this.match.Id);
-    }
-
-    unsubscribe() {
-        this.subscribed = false;
-        //this.feedService.unsubscribeToFeed(this.match.Id);
-    }
-
     setSubscription(val: boolean) {
         this.subscribed = val;
         let subscription =
@@ -51,6 +40,8 @@ export class MatchComponent implements OnInit {
 
         this.dataService.addChatMessage(messageToSend)
             .subscribe(() => {
+                // Nothing to do here
+                // Since is subscribed, caller will also receive the message
                 console.log('message sent..');
             },
             error => {
