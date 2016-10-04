@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FeedService } from '../shared/services/feed.service';
 import { Match, Feed } from '../shared/interfaces';
 import { DataService } from '../shared/services/data.service';
-import { ConnectionState } from '../shared/interfaces';
+import { SignalRConnectionStatus } from '../shared/interfaces';
 
 @Component({
     selector: 'home',
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
         self.feedService.connectionState
             .subscribe(
             connectionState => {
-                if (connectionState == ConnectionState.Connected) {
+                if (connectionState == SignalRConnectionStatus.Connected) {
                     console.log('Connected!');
                     self.loadMatches();
                 } else {

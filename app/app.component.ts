@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FeedService } from './shared/services/feed.service';
-import { ConnectionState } from './shared/interfaces';
+import { SignalRConnectionStatus } from './shared/interfaces';
 
 @Component({
     selector: 'my-app',

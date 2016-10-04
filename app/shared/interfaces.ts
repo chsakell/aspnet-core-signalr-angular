@@ -22,7 +22,7 @@ export interface FeedServer {
     unsubscribe(matchId: number): void;
 }
 
-export enum ConnectionState {
+export enum SignalRConnectionStatus {
     Connected = 1,
     Disconnected = 2,
     Error = 3

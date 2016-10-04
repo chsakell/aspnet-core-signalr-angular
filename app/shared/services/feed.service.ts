@@ -5,20 +5,20 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import { FeedSignalR, FeedProxy, FeedClient, FeedServer, ConnectionState, ChatMessage, Match, Feed } from '../interfaces';
+import { FeedSignalR, FeedProxy, FeedClient, FeedServer, SignalRConnectionStatus, ChatMessage, Match, Feed } from '../interfaces';
 
 @Injectable()
 export class FeedService {
 
-    currentState = ConnectionState.Disconnected;
-    connectionState: Observable<ConnectionState>;
+    currentState = SignalRConnectionStatus.Disconnected;
+    connectionState: Observable<SignalRConnectionStatus>;
 
     userConnected: Observable<any>;
     updateMatch: Observable<Match>;
     addFeed: Observable<Feed>;
     addChatMessage: Observable<ChatMessage>;
 
-    private connectionStateSubject = new Subject<ConnectionState>();
+    private connectionStateSubject = new Subject<SignalRConnectionStatus>();
     private userConnectedSubject = new Subject<any>();
 
     private updateMatchSubject = new Subject<Match>();
@@ -36,7 +36,7 @@ export class FeedService {
         this.addChatMessage = this.addChatMessageSubject.asObservable();
     }
 
-    start(debug: boolean): Observable<ConnectionState> {
+    start(debug: boolean): Observable<SignalRConnectionStatus> {
         // only for debug
         $.connection.hub.logging = debug;
         // get the signalR hub named 'broadcaster'
@@ -64,13 +64,13 @@ export class FeedService {
 
         // start the connection
         $.connection.hub.start()
-            .done(response => this.setConnectionState(ConnectionState.Connected))
+            .done(response => this.setConnectionState(SignalRConnectionStatus.Connected))
             .fail(error => this.connectionStateSubject.error(error));
 
         return this.connectionState;
     }
 
-    private setConnectionState(connectionState: ConnectionState) {
+    private setConnectionState(connectionState: SignalRConnectionStatus) {
         console.log('connection state changed to: ' + connectionState);
         this.currentState = connectionState;
         this.connectionStateSubject.next(connectionState);
