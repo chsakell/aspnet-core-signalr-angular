@@ -12,11 +12,10 @@ export class FeedService {
 
     currentState = ConnectionState.Disconnected;
     connectionState: Observable<ConnectionState>;
-    userConnected: Observable<any>;
 
+    userConnected: Observable<any>;
     updateMatch: Observable<Match>;
     addFeed: Observable<Feed>;
-    messageReceived: Observable<string>;
     addChatMessage: Observable<ChatMessage>;
 
     private connectionStateSubject = new Subject<ConnectionState>();
@@ -24,18 +23,16 @@ export class FeedService {
 
     private updateMatchSubject = new Subject<Match>();
     private addFeedSubject = new Subject<Feed>();
-    private messageReceivedSubject = new Subject<string>();
     private addChatMessageSubject = new Subject<ChatMessage>();
 
     private server: FeedServer;
 
     constructor(private http: Http) {
         this.connectionState = this.connectionStateSubject.asObservable();
-        this.userConnected = this.userConnectedSubject.asObservable();
 
+        this.userConnected = this.userConnectedSubject.asObservable();
         this.updateMatch = this.updateMatchSubject.asObservable();
         this.addFeed = this.addFeedSubject.asObservable();
-        this.messageReceived = this.messageReceivedSubject.asObservable();
         this.addChatMessage = this.addChatMessageSubject.asObservable();
     }
 
@@ -52,7 +49,7 @@ export class FeedService {
          * @param User user, the connected user
        */
         feedHub.client.userConnected = user => this.onUserConnected(user);
-        
+
         /**
           * @desc callback when match score is updated
         */
@@ -63,33 +60,7 @@ export class FeedService {
         */
         feedHub.client.addFeed = feed => this.onAddFeed(feed);
 
-        /**
-          * @desc callback when a message is received
-          * @param String to, the conversation id
-          * @param Message data, the message
-        */
-        feedHub.client.messageReceived = message => this.onMessageReceived(message);
-
         feedHub.client.addChatMessage = chatMessage => this.onAddChatMessage(chatMessage);
-
-        if (debug) {
-            // for debug only, callback on connection state change
-            $.connection.hub.stateChanged(change => {
-                let oldState: string,
-                    newState: string;
-
-                for (var state in $.signalR.connectionState) {
-                    if ($.signalR.connectionState[state] === change.oldState) {
-                        oldState = state;
-                    }
-                    if ($.signalR.connectionState[state] === change.newState) {
-                        newState = state;
-                    }
-                }
-
-                console.log("Feed Hub state changed from " + oldState + " to " + newState);
-            });
-        }
 
         // start the connection
         $.connection.hub.start()
@@ -105,6 +76,7 @@ export class FeedService {
         this.connectionStateSubject.next(connectionState);
     }
 
+    // Client side methods
     private onUserConnected(user: any) {
         this.userConnectedSubject.next(user);
     }
@@ -118,15 +90,12 @@ export class FeedService {
         this.addFeedSubject.next(feed);
     }
 
-    private onMessageReceived(message: string) {
-        this.messageReceivedSubject.next(message);
-    }
-
     private onAddChatMessage(chatMessage: ChatMessage) {
         console.log(chatMessage);
         this.addChatMessageSubject.next(chatMessage);
     }
 
+    // Server side methods
     public subscribeToFeed(matchId: number) {
         this.server.subscribe(matchId);
     }

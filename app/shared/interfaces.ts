@@ -14,7 +14,6 @@ export interface FeedClient {
 
     updateMatch: (match: Match) => void;
     addFeed: (feed: Feed) => void;
-    messageReceived: (message: string) => void;
     addChatMessage: (chatMessage: ChatMessage) => void;
 }
 

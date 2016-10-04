@@ -9,10 +9,6 @@ namespace LiveGameFeed.Hubs
         {
             return Clients.All.userConnected("New connection " + Context.ConnectionId);
         }
-        public Task Broadcast(string message)
-        {
-            return Clients.All.messageReceived(Context.ConnectionId + "> " + message);
-        }
 
         public Task Subscribe(int matchId)
         {
