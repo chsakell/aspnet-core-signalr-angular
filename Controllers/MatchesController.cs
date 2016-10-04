@@ -43,9 +43,10 @@ namespace LiveGameFeed.Controllers
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpPost("update", Name = "UpdateScore")]
+        public void UpdateScore([FromBody]MatchScore matchScore)
         {
+            
         }
 
         // PUT api/values/5

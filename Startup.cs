@@ -55,8 +55,7 @@ namespace LiveGameFeed
 
             services.AddSignalR(options => options.Hubs.EnableDetailedErrors = true);
 
-            services.AddTask<SampleTask>();
-            services.AddSingleton<SampleTaskRunHistory>();
+            services.AddTask<FeedEngine>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,32 +89,23 @@ namespace LiveGameFeed
 
             LiveGameDbInitializer.Initialize(app.ApplicationServices);
 
-            app.StartTask<SampleTask>(TimeSpan.FromSeconds(15));
+            app.StartTask<FeedEngine>(TimeSpan.FromSeconds(15));
         }
     }
 
-    public class SampleTask : IRunnable
+    public class FeedEngine : IRunnable
     {
         private ILogger logger;
 
-        private SampleTaskRunHistory runHistory;
-
-        public SampleTask(ILogger<SampleTask> logger, SampleTaskRunHistory runHistory)
+        public FeedEngine(ILogger<FeedEngine> logger)
         {
             this.logger = logger;
-            this.runHistory = runHistory;
         }
 
         public void Run(TaskRunStatus taskRunStatus)
         {
             var msg = string.Format("Run at: {0}", DateTimeOffset.Now);
-            runHistory.Messages.Add(msg);
             logger.LogDebug(msg);
         }
-    }
-
-    public class SampleTaskRunHistory
-    {
-        public List<string> Messages { get; } = new List<string>();
     }
 }

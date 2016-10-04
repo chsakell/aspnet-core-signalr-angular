@@ -27,7 +27,7 @@ namespace LiveGameFeed.Controllers
         {
             _matchRepository = matchRepository;
             _feedRepository = feedRepository;
-            timerService.TimerElapsed += _feed_Generate;
+            // timerService.TimerElapsed += _feed_Generate;
         }
 
         public IActionResult Index()
