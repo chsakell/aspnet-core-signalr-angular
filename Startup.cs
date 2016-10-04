@@ -12,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using LiveGameFeed.Core.Mappings;
-using LiveGameFeed.Core.MvcTimer;
 using Newtonsoft.Json.Serialization;
 using RecurrentTasks;
 using LiveGameFeed.Core;
@@ -40,10 +39,6 @@ namespace LiveGameFeed
             // Repositories
             services.AddSingleton<IMatchRepository, MatchRepository>();
             services.AddSingleton<IFeedRepository, FeedRepository>();
-
-            // Timer service configuration
-            services.AddSingleton<ITimerService, TimerService>();
-            services.Configure<TimerServiceConfiguration>(Configuration.GetSection("TimeService"));
 
             // Automapper Configuration
             AutoMapperConfiguration.Configure();
