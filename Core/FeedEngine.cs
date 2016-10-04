@@ -36,10 +36,12 @@ namespace LiveGameFeed.Core
             {
                 Random r = new Random();
                 bool updateHost = r.Next(0, 2) == 1;
+                int points = r.Next(2,4);
+
                 if (updateHost)
-                    match.HostScore += 2;
+                    match.HostScore += points;
                 else
-                    match.GuestScore += 2;
+                    match.GuestScore += points;
 
                 MatchScore score = new MatchScore()
                 {
@@ -47,9 +49,23 @@ namespace LiveGameFeed.Core
                     GuestScore = match.GuestScore
                 };
 
+                // Update Score for all clients
                 using (var client = new HttpClient())
                 {
                     await client.PutAsJsonAsync<MatchScore>(_apiURI + "matches/" + match.Id, score);
+                }
+
+                // Update Feed for subscribed only clients
+
+                FeedViewModel _feed = new FeedViewModel()
+                {
+                    MatchId = match.Id,
+                    Description = points + " points for " + (updateHost == true ? match.Host : match.Guest + "!"),
+                    CreatedAt = DateTime.Now 
+                };
+                using (var client = new HttpClient())
+                {
+                    await client.PostAsJsonAsync<FeedViewModel>(_apiURI + "feeds", _feed);
                 }
             }
         }

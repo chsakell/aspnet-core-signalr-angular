@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.SignalR.Infrastructure;
 using LiveGameFeed.Hubs;
 using LiveGameFeed.Data.Abstract;
 using LiveGameFeed.Models;
+using AutoMapper;
 
 namespace LiveGameFeed.Controllers
 {
@@ -14,12 +15,15 @@ namespace LiveGameFeed.Controllers
     public class FeedsController : ApiHubController<Broadcaster>
     {
         IFeedRepository _feedRepository;
+        IMatchRepository _matchRepository;
         public FeedsController(
             IConnectionManager signalRConnectionManager,
-            IFeedRepository feedRepository)
+            IFeedRepository feedRepository,
+            IMatchRepository matchRepository)
         : base(signalRConnectionManager)
         {
             _feedRepository = feedRepository;
+            _matchRepository = matchRepository;
         }
 
         // GET api/values
@@ -31,29 +35,33 @@ namespace LiveGameFeed.Controllers
             return _feeds;
         }
 
-        // GET api/values/5
+        // GET api/feeds/5
         [HttpGet("{id}")]
         public Feed Get(int id)
         {
             return _feedRepository.GetSingle(id);
         }
 
-        // POST api/values
+        // POST api/feeds
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async void Post([FromBody]FeedViewModel feed)
         {
+            Match _match = _matchRepository.GetSingle(feed.MatchId);
+            Feed _matchFeed = new Feed() 
+            {
+                Description = feed.Description,
+                CreatedAt = feed.CreatedAt,
+                MatchId = feed.MatchId
+            };
+
+            _match.Feeds.Add(_matchFeed);
+
+            _matchRepository.Commit();
+
+            FeedViewModel _feedVM = Mapper.Map<Feed, FeedViewModel>(_matchFeed);
+
+            await Clients.Group(feed.MatchId.ToString()).addFeed(_feedVM);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
