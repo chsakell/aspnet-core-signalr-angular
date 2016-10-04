@@ -15,6 +15,7 @@ using LiveGameFeed.Core.Mappings;
 using LiveGameFeed.Core.MvcTimer;
 using Newtonsoft.Json.Serialization;
 using RecurrentTasks;
+using LiveGameFeed.Core;
 
 namespace LiveGameFeed
 {
@@ -90,22 +91,6 @@ namespace LiveGameFeed
             LiveGameDbInitializer.Initialize(app.ApplicationServices);
 
             app.StartTask<FeedEngine>(TimeSpan.FromSeconds(15));
-        }
-    }
-
-    public class FeedEngine : IRunnable
-    {
-        private ILogger logger;
-
-        public FeedEngine(ILogger<FeedEngine> logger)
-        {
-            this.logger = logger;
-        }
-
-        public void Run(TaskRunStatus taskRunStatus)
-        {
-            var msg = string.Format("Run at: {0}", DateTimeOffset.Now);
-            logger.LogDebug(msg);
         }
     }
 }
