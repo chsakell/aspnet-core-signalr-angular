@@ -42,23 +42,17 @@ namespace LiveGameFeed.Controllers
             return _matchVM;
         }
 
-        // POST api/values
-        [HttpPost("update", Name = "UpdateScore")]
-        public void UpdateScore([FromBody]MatchScore matchScore)
-        {
-            
-        }
-
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async void Put(int id, [FromBody]MatchScore score)
         {
-        }
+            Match _match = _matchRepository.GetSingle(id);
+            _match.HostScore = score.HostScore;
+            _match.GuestScore = score.GuestScore;
+            _matchRepository.Commit();
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            MatchViewModel _matchVM = Mapper.Map<Match, MatchViewModel>(_match);
+            await Clients.All.updateMatch(_matchVM);
         }
     }
 }
