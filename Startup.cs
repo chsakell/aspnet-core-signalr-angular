@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using LiveGameFeed.Core.Mappings;
 using LiveGameFeed.Core.MvcTimer;
 using Newtonsoft.Json.Serialization;
+using RecurrentTasks;
 
 namespace LiveGameFeed
 {
@@ -53,6 +54,9 @@ namespace LiveGameFeed
                     new DefaultContractResolver());
 
             services.AddSignalR(options => options.Hubs.EnableDetailedErrors = true);
+
+            services.AddTask<SampleTask>();
+            services.AddSingleton<SampleTaskRunHistory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +89,33 @@ namespace LiveGameFeed
             app.UseSignalR();
 
             LiveGameDbInitializer.Initialize(app.ApplicationServices);
+
+            app.StartTask<SampleTask>(TimeSpan.FromSeconds(15));
         }
+    }
+
+    public class SampleTask : IRunnable
+    {
+        private ILogger logger;
+
+        private SampleTaskRunHistory runHistory;
+
+        public SampleTask(ILogger<SampleTask> logger, SampleTaskRunHistory runHistory)
+        {
+            this.logger = logger;
+            this.runHistory = runHistory;
+        }
+
+        public void Run(TaskRunStatus taskRunStatus)
+        {
+            var msg = string.Format("Run at: {0}", DateTimeOffset.Now);
+            runHistory.Messages.Add(msg);
+            logger.LogDebug(msg);
+        }
+    }
+
+    public class SampleTaskRunHistory
+    {
+        public List<string> Messages { get; } = new List<string>();
     }
 }
