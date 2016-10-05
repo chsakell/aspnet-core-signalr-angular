@@ -1,10 +1,10 @@
 body {
-    background-color: #f5f5f5;
+    background-color: #1d3346;
 }
 
 .box {
     height: 50px;
-    background-color: #337ab7;
+    /*background-color: #286090;*/
     margin:5px;
     padding: 10px;
     text-align: center;
@@ -17,6 +17,10 @@ body {
 
 .teamName {
     color:ghostwhite;
+}
+
+.match-th {
+    color:#a94442;
 }
 
 th, td {
