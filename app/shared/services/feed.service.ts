@@ -13,14 +13,14 @@ export class FeedService {
     currentState = SignalRConnectionStatus.Disconnected;
     connectionState: Observable<SignalRConnectionStatus>;
 
-    userConnected: Observable<any>;
+    setConnectionId: Observable<string>;
     updateMatch: Observable<Match>;
     addFeed: Observable<Feed>;
     addChatMessage: Observable<ChatMessage>;
 
     private connectionStateSubject = new Subject<SignalRConnectionStatus>();
-    private userConnectedSubject = new Subject<any>();
-
+    
+    private setConnectionIdSubject = new Subject<string>();
     private updateMatchSubject = new Subject<Match>();
     private addFeedSubject = new Subject<Feed>();
     private addChatMessageSubject = new Subject<ChatMessage>();
@@ -30,7 +30,7 @@ export class FeedService {
     constructor(private http: Http) {
         this.connectionState = this.connectionStateSubject.asObservable();
 
-        this.userConnected = this.userConnectedSubject.asObservable();
+        this.setConnectionId = this.setConnectionIdSubject.asObservable();
         this.updateMatch = this.updateMatchSubject.asObservable();
         this.addFeed = this.addFeedSubject.asObservable();
         this.addChatMessage = this.addChatMessageSubject.asObservable();
@@ -48,7 +48,7 @@ export class FeedService {
          * @desc callback when a new user connect to the chat
          * @param User user, the connected user
        */
-        feedHub.client.userConnected = user => this.onUserConnected(user);
+        feedHub.client.setConnectionId = id => this.onSetConnectionId(id);
 
         /**
           * @desc callback when match score is updated
@@ -77,8 +77,8 @@ export class FeedService {
     }
 
     // Client side methods
-    private onUserConnected(user: any) {
-        this.userConnectedSubject.next(user);
+    private onSetConnectionId(id: string) {
+        this.setConnectionIdSubject.next(id);
     }
 
     private onUpdateMatch(match: Match) {

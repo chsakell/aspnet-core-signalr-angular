@@ -9,7 +9,7 @@ export interface FeedProxy {
 }
 
 export interface FeedClient {
-    userConnected: (user: any) => void;
+    setConnectionId: (id: string) => void;
     userDisconnected: (id: string) => void;
 
     updateMatch: (match: Match) => void;

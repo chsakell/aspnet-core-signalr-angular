@@ -7,9 +7,11 @@ namespace LiveGameFeed.Hubs
     {
         public override Task OnConnected()
         {
-            return Clients.All.userConnected("New connection " + Context.ConnectionId);
+            // Set connection id for just connected client only
+            return Clients.Client(Context.ConnectionId).setConnectionId(Context.ConnectionId);
         }
 
+        // Server side methods called from client
         public Task Subscribe(int matchId)
         {
             return Groups.Add(Context.ConnectionId, matchId.ToString());
