@@ -37,8 +37,8 @@ namespace LiveGameFeed
         {
             services.AddDbContext<LiveGameContext>(options => options.UseInMemoryDatabase());
             // Repositories
-            services.AddSingleton<IMatchRepository, MatchRepository>();
-            services.AddSingleton<IFeedRepository, FeedRepository>();
+            services.AddScoped<IMatchRepository, MatchRepository>();
+            services.AddScoped<IFeedRepository, FeedRepository>();
 
             // Automapper Configuration
             AutoMapperConfiguration.Configure();

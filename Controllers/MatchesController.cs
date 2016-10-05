@@ -27,7 +27,7 @@ namespace LiveGameFeed.Controllers
         [HttpGet]
         public IEnumerable<MatchViewModel> Get()
         {
-            IEnumerable<Match> _matches = _matchRepository.GetAll();
+            IEnumerable<Match> _matches = _matchRepository.AllIncluding(m => m.Feeds);
             IEnumerable<MatchViewModel> _matchesVM = Mapper.Map<IEnumerable<Match>, IEnumerable<MatchViewModel>>(_matches);
 
             return _matchesVM;
