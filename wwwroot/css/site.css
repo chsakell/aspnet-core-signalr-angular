@@ -70,3 +70,13 @@ th, td {
     -ms-transition: background-color 2000ms linear;
     transition: background-color 2000ms linear;
 }
+
+footer {
+    position: fixed;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #222222;
+    bottom: 0;
+    width: 100%;
+}
