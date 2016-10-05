@@ -28,7 +28,7 @@
             </td>
         </tr>
         <tr *ngIf="subscribed">
-            <td><button type="button" class="btn btn-default btn-md" (click)="addChatMessage()">Send</button></td>
+            <td><button type="button" class="btn btn-default btn-md" (click)="addChatMessage()" [disabled]="chatMessage.trim().length === 0">Send</button></td>
             <td><input type="text" class="form-control" placeholder="Type message.." [(ngModel)]="chatMessage" /></td>
         </tr>
         <tr>
