@@ -47,7 +47,16 @@ th, td {
 }
 
 .feed-highlight {
-    background-color: #eee;
+    background-color: #a94442;
+    -webkit-transition: background-color 2000ms linear;
+    -moz-transition: background-color 2000ms linear;
+    -o-transition: background-color 2000ms linear;
+    -ms-transition: background-color 2000ms linear;
+    transition: background-color 2000ms linear;
+}
+
+.feed-highlight-light {
+    background-color: white;
     -webkit-transition: background-color 2000ms linear;
     -moz-transition: background-color 2000ms linear;
     -o-transition: background-color 2000ms linear;
