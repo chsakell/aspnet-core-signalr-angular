@@ -8,7 +8,6 @@ export class HighlightDirective {
     let self = this;
       self.renderer.setElementClass(this.el.nativeElement, 'feed-highlight', true);
       setTimeout(function() {
-        console.log('removing..');
         self.renderer.setElementClass(self.el.nativeElement,'feed-highlight-light', true);
       }, 1000);
    }
