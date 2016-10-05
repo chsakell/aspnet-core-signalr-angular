@@ -32,6 +32,11 @@ th, td {
     overflow: auto;
 }
 
+.chat-table {
+    height: 240px;
+    overflow: auto;
+}
+
 .feed-time {
     color:brown;
     font-size: 10px;

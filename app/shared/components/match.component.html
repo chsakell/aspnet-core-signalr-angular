@@ -22,7 +22,7 @@
                 <button type="button" class="btn btn-default btn-md" (click)="setSubscription(true)" *ngIf="!subscribed">
                             Subscribe to feed
                         </button>
-                <button type="button" class="btn btn-danger btn-md" (click)="unsubscribe(false)" *ngIf="subscribed">
+                <button type="button" class="btn btn-danger btn-md" (click)="setSubscription(false)" *ngIf="subscribed">
                             Unubscribe
                         </button>
             </td>

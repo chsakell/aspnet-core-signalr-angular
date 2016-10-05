@@ -33,7 +33,8 @@ namespace LiveGameFeed.Data
                         new Feed()
                         {
                             Description = "Match started",
-                            MatchId = 1
+                            MatchId = 1,
+                            CreatedAt = DateTime.Now
                         }
                     }
                 };
@@ -51,7 +52,8 @@ namespace LiveGameFeed.Data
                         new Feed()
                         {
                             Description = "Match started",
-                            MatchId = 2
+                            MatchId = 2,
+                            CreatedAt = DateTime.Now
                         }
                     }
                 };
