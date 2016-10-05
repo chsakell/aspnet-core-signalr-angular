@@ -23,6 +23,13 @@ body {
     color:#a94442;
 }
 
+.match-type {
+    color: #FF5722;
+    margin-bottom: 0px;
+    font-size: 22px;
+    font-style: italic;
+}
+
 th, td {
     text-align: center;
 }
