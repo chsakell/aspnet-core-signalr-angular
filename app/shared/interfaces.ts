@@ -10,8 +10,6 @@ export interface FeedProxy {
 
 export interface FeedClient {
     setConnectionId: (id: string) => void;
-    userDisconnected: (id: string) => void;
-
     updateMatch: (match: Match) => void;
     addFeed: (feed: Feed) => void;
     addChatMessage: (chatMessage: ChatMessage) => void;

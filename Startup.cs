@@ -67,14 +67,7 @@ namespace LiveGameFeed
                     .AllowCredentials())
                 .UseStaticFiles()
                 .UseWebSockets();
-            /*
-            .Map("/xhrf", a => a.Run(async context => 
-            {
-                var tokens = antiforgery.GetAndStoreTokens(context);
-                context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, new CookieOptions() { HttpOnly = false });
-                await context.Response.WriteAsync(tokens.RequestToken);
-            }));
-            */
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

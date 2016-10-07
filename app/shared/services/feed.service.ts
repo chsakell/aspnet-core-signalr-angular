@@ -37,27 +37,21 @@ export class FeedService {
     }
 
     start(debug: boolean): Observable<SignalRConnectionStatus> {
-        // only for debug
+
         $.connection.hub.logging = debug;
-        // get the signalR hub named 'broadcaster'
+        
         let connection = <FeedSignalR>$.connection;
+        // reference signalR hub named 'broadcaster'
         let feedHub = connection.broadcaster;
         this.server = feedHub.server;
 
-        /**
-         * @desc callback when a new user connect to the chat
-         * @param User user, the connected user
-       */
+        // setConnectionId method called by server
         feedHub.client.setConnectionId = id => this.onSetConnectionId(id);
 
-        /**
-          * @desc callback when match score is updated
-        */
+        // updateMatch method called by server
         feedHub.client.updateMatch = match => this.onUpdateMatch(match);
 
-        /**
-          * @desc callback when a feed is added
-        */
+        // addFeed method called by server
         feedHub.client.addFeed = feed => this.onAddFeed(feed);
 
         feedHub.client.addChatMessage = chatMessage => this.onAddChatMessage(chatMessage);
@@ -91,7 +85,6 @@ export class FeedService {
     }
 
     private onAddChatMessage(chatMessage: ChatMessage) {
-        console.log(chatMessage);
         this.addChatMessageSubject.next(chatMessage);
     }
 
