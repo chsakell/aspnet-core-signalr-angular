@@ -33,15 +33,6 @@ namespace LiveGameFeed.Controllers
             return _matchesVM;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public MatchViewModel Get(int id)
-        {
-            Match _match = _matchRepository.GetSingle(id);
-            MatchViewModel _matchVM = Mapper.Map<Match, MatchViewModel>(_match);
-            return _matchVM;
-        }
-
         // PUT api/values/5
         [HttpPut("{id}")]
         public async void Put(int id, [FromBody]MatchScore score)

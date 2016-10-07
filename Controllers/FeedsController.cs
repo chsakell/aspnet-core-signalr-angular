@@ -26,22 +26,6 @@ namespace LiveGameFeed.Controllers
             _matchRepository = matchRepository;
         }
 
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<Feed> Get()
-        {
-            IEnumerable<Feed> _feeds = _feedRepository.GetAll();
-
-            return _feeds;
-        }
-
-        // GET api/feeds/5
-        [HttpGet("{id}")]
-        public Feed Get(int id)
-        {
-            return _feedRepository.GetSingle(id);
-        }
-
         // POST api/feeds
         [HttpPost]
         public async void Post([FromBody]FeedViewModel feed)
