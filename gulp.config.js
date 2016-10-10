@@ -15,6 +15,7 @@ module.exports = function() {
         js: base.webroot + "js/**/*.js",
         css : base.webroot + "css/**/*.css",
         lib : base.webroot + "lib/",
+        node_modules : base.node_modules,
         angularWebApi : base.node_modules + "angular2-in-memory-web-api/*.js",
         corejs : base.node_modules + "core-js/client/shim*.js",
         zonejs : base.node_modules + "zone.js/dist/zone*.js",

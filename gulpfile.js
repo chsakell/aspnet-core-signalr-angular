@@ -18,43 +18,43 @@ gulp.task("clean", ["clean:js", "clean:css"]);
 gulp.task("copy:angular", function () {
 
     return gulp.src(config.angular,
-        { base: "./node_modules/" + "@angular/" })
+        { base: config.node_modules + "@angular/" })
         .pipe(gulp.dest(config.lib + "@angular/"));
 });
 
 gulp.task("copy:angularWebApi", function () {
     return gulp.src(config.angularWebApi,
-        { base: "./node_modules/" })
+        { base: config.node_modules })
         .pipe(gulp.dest(config.lib));
 });
 
 gulp.task("copy:corejs", function () {
     return gulp.src(config.corejs,
-        { base: "./node_modules/" })
+        { base: config.node_modules })
         .pipe(gulp.dest(config.lib));
 });
 
 gulp.task("copy:zonejs", function () {
     return gulp.src(config.zonejs,
-        { base: "./node_modules/" })
+        { base: config.node_modules })
         .pipe(gulp.dest(config.lib));
 });
 
 gulp.task("copy:reflectjs", function () {
     return gulp.src(config.reflectjs,
-        { base: "./node_modules/" })
+        { base: config.node_modules })
         .pipe(gulp.dest(config.lib));
 });
 
 gulp.task("copy:systemjs", function () {
     return gulp.src(config.systemjs,
-        { base: "./node_modules/" })
+        { base: config.node_modules })
         .pipe(gulp.dest(config.lib));
 });
 
 gulp.task("copy:rxjs", function () {
     return gulp.src(config.rxjs,
-        { base: "./node_modules/" })
+        { base: config.node_modules })
         .pipe(gulp.dest(config.lib));
 });
 
@@ -65,7 +65,7 @@ gulp.task("copy:app", function () {
 
 gulp.task("copy:jasmine", function () {
     return gulp.src(config.jasminejs,
-        { base: "./node_modules/" + "jasmine-core/lib" })
+        { base: config.node_modules + "jasmine-core/lib" })
         .pipe(gulp.dest(config.lib));
 });
 
