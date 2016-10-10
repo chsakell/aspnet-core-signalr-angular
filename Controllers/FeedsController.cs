@@ -44,7 +44,7 @@ namespace LiveGameFeed.Controllers
 
             FeedViewModel _feedVM = Mapper.Map<Feed, FeedViewModel>(_matchFeed);
 
-            await Clients.Group(feed.MatchId.ToString()).addFeed(_feedVM);
+            await Clients.Group(feed.MatchId.ToString()).AddFeed(_feedVM);
         }
 
     }

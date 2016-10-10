@@ -19,7 +19,7 @@ namespace LiveGameFeed.Controllers
         [HttpPost]
         public void Post([FromBody]ChatMessage message)
         {
-            this.Clients.Group(message.MatchId.ToString()).addChatMessage(message);
+            this.Clients.Group(message.MatchId.ToString()).AddChatMessage(message);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace LiveGameFeed.Controllers
             _matchRepository.Commit();
 
             MatchViewModel _matchVM = Mapper.Map<Match, MatchViewModel>(_match);
-            await Clients.All.updateMatch(_matchVM);
+            await Clients.All.UpdateMatch(_matchVM);
         }
     }
 }
