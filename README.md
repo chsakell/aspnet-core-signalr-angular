@@ -1,6 +1,6 @@
 # aspnet-core-signalr-angular
 
-Blog post <a href="http://wp.me/p3mRWu-1b2" taget="_blank">Real-time applications using ASP.NET Core, SignalR & Angular</a><br/>
+Blog post: <a href="http://wp.me/p3mRWu-1b2" taget="_blank">Real-time applications using ASP.NET Core, SignalR & Angular</a><br/>
 <h5>Features explained</h5>
 <ul>
 <li>Fire up an empty <span style="color: #FF5722;">ASP.NET Core</span> web application using <a href="" target="_blank">yeoman</a></li>
