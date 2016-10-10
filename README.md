@@ -11,7 +11,7 @@ Blog post <a href="http://wp.me/p3mRWu-1b2" taget="_blank">Real-time application
 <li>Create the <span style="color: #FF5722;">Angular-SignalR</span> service to communicate with SignalR hubs</li>
 <li>Add Reccurent Tasks on a ASP.NET Core application</li>
 </ul>
-<a href="http://wp.me/p3mRWu-1b2" target="_blank"><img src=https://chsakell.files.wordpress.com/2016/10/aspnet-core-signalr-angular.png" alt="dotnet-core-api-14" class="alignnone size-full wp-image-4397"></a>
+<a href="http://wp.me/p3mRWu-1b2" target="_blank"><img src="https://chsakell.files.wordpress.com/2016/10/aspnet-core-signalr-angular.png" alt="dotnet-core-api-14" class="alignnone size-full wp-image-4397"></a>
 
 <h3>Installation Instructions</h3>
 <ol>
