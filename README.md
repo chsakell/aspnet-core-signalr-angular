@@ -31,6 +31,12 @@ Blog post <a href="http://wp.me/p3mRWu-1b2" taget="_blank">Real-time application
 </li>
 </ol>
 
+<p>
+<a href="http://wp.me/p3mRWu-1b2" target="_blank">
+<img src="https://chsakell.files.wordpress.com/2016/10/aspnet-core-signalr-angular-05.gif" alt="aspnet-core-signalr-angular" />
+</a>
+</p>
+
 <h2>Donations</h2>
 For being part of open source projects and documenting my work here and on <a href="https://chsakell.com">chsakell's blog</a> I really do not charge anything. I try to avoid any type of ads also.
 
