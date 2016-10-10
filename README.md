@@ -1,4 +1,18 @@
 # aspnet-core-signalr-angular
+
+Blog post <a href="http://wp.me/p3mRWu-1b2" taget="_blank">Real-time applications using ASP.NET Core, SignalR & Angular</a><br/>
+<h5>Features explained</h5>
+<ul>
+<li>Fire up an empty <span style="color: #FF5722;">ASP.NET Core</span> web application using <a href="" target="_blank">yeoman</a></li>
+<li>Configure and install <span style="color: #FF5722;">MVC and SignalR Server</span> dependencies</li>
+<li>Install <span style="color: #FF5722;">SignalR Client-Typescript</span> dependencies</li>
+<li>Create SignalR hubs</li>
+<li>Integrate <span style="color: #FF5722;">MVC Controllers <i>(API)</i></span> with SignalR</li>
+<li>Create the <span style="color: #FF5722;">Angular-SignalR</span> service to communicate with SignalR hubs</li>
+<li>Add Reccurent Tasks on a ASP.NET Core application</li>
+</ul>
+<a href="http://wp.me/p3mRWu-1b2" target="_blank"><img src=https://chsakell.files.wordpress.com/2016/10/aspnet-core-signalr-angular.png" alt="dotnet-core-api-14" class="alignnone size-full wp-image-4397"></a>
+
 <h3>Installation Instructions</h3>
 <ol>
 <li>Clone or download the repository and open it on your favorite editor</li>
