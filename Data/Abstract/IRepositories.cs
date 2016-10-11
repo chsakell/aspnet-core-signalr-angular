@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LiveGameFeed.Models;
+﻿using LiveGameFeed.Models;
 
 namespace LiveGameFeed.Data.Abstract
 {

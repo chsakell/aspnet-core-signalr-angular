@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using LiveGameFeed.Data.Abstract;
 using LiveGameFeed.Models;
