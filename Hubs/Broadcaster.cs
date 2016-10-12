@@ -24,6 +24,7 @@ namespace LiveGameFeed.Hubs
         }
     }
 
+    // Client side methods to be invoked by Broadcaster Hub
     public interface IBroadcaster
     {
         Task SetConnectionId(string connectionId);
