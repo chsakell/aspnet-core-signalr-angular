@@ -12,8 +12,6 @@ namespace LiveGameFeed.Core
     {
         private ILogger logger;
         IMatchRepository _matchRepository;
-        private string _apiURI = "http://localhost:5000/api/";
-
         public FeedEngine(IMatchRepository matchRepository,
                           ILogger<FeedEngine> logger)
         {
@@ -51,7 +49,7 @@ namespace LiveGameFeed.Core
                 // Update Score for all clients
                 using (var client = new HttpClient())
                 {
-                    await client.PutAsJsonAsync<MatchScore>(_apiURI + "matches/" + match.Id, score);
+                    await client.PutAsJsonAsync<MatchScore>(Startup.API_URL + "matches/" + match.Id, score);
                 }
 
                 // Update Feed for subscribed only clients
@@ -64,7 +62,7 @@ namespace LiveGameFeed.Core
                 };
                 using (var client = new HttpClient())
                 {
-                    await client.PostAsJsonAsync<FeedViewModel>(_apiURI + "feeds", _feed);
+                    await client.PostAsJsonAsync<FeedViewModel>(Startup.API_URL + "feeds", _feed);
                 }
             }
         }

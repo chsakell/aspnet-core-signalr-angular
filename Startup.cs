@@ -17,6 +17,7 @@ namespace LiveGameFeed
 {
     public class Startup
     {
+        public static string API_URL = string.Empty;
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -25,6 +26,8 @@ namespace LiveGameFeed
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            API_URL = Configuration["apiURL"];
         }
 
         public IConfigurationRoot Configuration { get; }
