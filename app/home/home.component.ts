@@ -51,6 +51,9 @@ export class HomeComponent implements OnInit {
                             if (self.matches[i].Id === match.Id) {
                                 self.matches[i].HostScore = match.HostScore;
                                 self.matches[i].GuestScore = match.GuestScore;
+
+                                if(match.HostScore === 0 && match.GuestScore === 0)
+                                    self.matches[i].Feeds = new Array<Feed>();
                             }
                         }
                     }

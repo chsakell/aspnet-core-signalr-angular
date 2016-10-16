@@ -35,8 +35,14 @@ namespace LiveGameFeed.Controllers
         public async void Put(int id, [FromBody]MatchScore score)
         {
             Match _match = _matchRepository.GetSingle(id);
+            if (score.HostScore == 0 && score.GuestScore == 0)
+            {
+                _match.Feeds.Clear();
+            }
+
             _match.HostScore = score.HostScore;
             _match.GuestScore = score.GuestScore;
+
             _matchRepository.Commit();
 
             MatchViewModel _matchVM = Mapper.Map<Match, MatchViewModel>(_match);
