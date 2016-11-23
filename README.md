@@ -16,6 +16,7 @@ Blog post: <a href="http://wp.me/p3mRWu-1b2" taget="_blank">Real-time applicatio
 <h3>Installation Instructions</h3>
 <ol>
 <li>Clone or download the repository and open it on your favorite editor</li>
+<li>Make sure you have the latest .NET Core version installed (<a href="https://www.microsoft.com/net/core">link 1</a> - <a href="https://www.microsoft.com/net/download/core">link 2</a>)</li>
 <li>Open a command prompt and run the following commands
 <ol>
 <li><b>npm install</b></li>
