@@ -1,4 +1,4 @@
-# aspnet-core-signalr-angular
+# Real-time applications using ASP.NET Core, SignalR & Angular
 
 Blog post: <a href="http://wp.me/p3mRWu-1b2" taget="_blank">Real-time applications using ASP.NET Core, SignalR & Angular</a><br/>
 <h5>Features explained</h5>
