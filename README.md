@@ -1,4 +1,5 @@
 # Real-time applications using ASP.NET Core, SignalR & Angular
+[![Build status](https://ci.appveyor.com/api/projects/status/github/chsakell/aspnet-core-signalr-angular?branch=master&svg=true)](https://ci.appveyor.com/project/chsakell/aspnet-core-signalr-angular/branch/master)
 
 Blog post: <a href="http://wp.me/p3mRWu-1b2" taget="_blank">Real-time applications using ASP.NET Core, SignalR & Angular</a><br/>
 <h5>Features explained</h5>
