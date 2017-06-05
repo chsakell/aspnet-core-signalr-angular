@@ -1,7 +1,3 @@
-
-
-# configuration for "master" branch
-# build in Release mode and deploy to Azure
 -
   branches:
     only:
@@ -10,6 +6,8 @@
   # Test against the latest version of this Node.js version
   environment:
     nodejs_version: "6"
+    DOTNET_CLI_TELEMETRY_OPTOUT: true
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
 
 # Install scripts. (runs after repo cloning)
   install:
@@ -18,13 +16,9 @@
     # install modules
     - npm install
   
-  environment:
-    DOTNET_CLI_TELEMETRY_OPTOUT: true
-    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   version: 1.0.{build}
   configuration: Release
   platform: Any CPU
   skip_branch_with_pr: false
   before_build:
     - cmd: dotnet restore
-
