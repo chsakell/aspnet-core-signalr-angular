@@ -1,13 +1,4 @@
-# Test against the latest version of this Node.js version
-environment:
-  nodejs_version: "6"
 
-# Install scripts. (runs after repo cloning)
-install:
-  # Get the latest stable version of Node.js or io.js
-  - ps: Install-Product node $env:nodejs_version
-  # install modules
-  - npm install
 
 # configuration for "master" branch
 # build in Release mode and deploy to Azure
@@ -16,6 +7,17 @@ install:
     only:
       - master
   image: Visual Studio 2017
+  # Test against the latest version of this Node.js version
+  environment:
+    nodejs_version: "6"
+
+# Install scripts. (runs after repo cloning)
+  install:
+    # Get the latest stable version of Node.js or io.js
+    - ps: Install-Product node $env:nodejs_version
+    # install modules
+    - npm install
+  
   environment:
     DOTNET_CLI_TELEMETRY_OPTOUT: true
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
